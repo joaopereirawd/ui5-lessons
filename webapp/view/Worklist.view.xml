@@ -1,0 +1,6 @@
+<mvc:View controllerName="client.controller.Worklist"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+
+     <Page id="worklist" title="Clients"></Page>
+</mvc:View>

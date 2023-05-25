@@ -2,5 +2,32 @@
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m">
 
-     <Page id="worklist" title="Clients"></Page>
+     <Page id="worklist" title="Clients">
+		<content>
+	  	    <Button id="btn" icon="sap-icon://edit" type="Transparent" press="onPress" ariaLabelledBy="editButtonLabel"/>
+
+			<List items="{meuModel>/Clients}">
+                <StandardListItem title="{meuModel>Nomecliente}" />
+            </List>
+			
+			<List
+				headerText="Products"
+				items="{path: 'ModelClients>/results'}" >
+				<StandardListItem
+					title="{ModelClients>Nomecliente}"
+					iconDensityAware="false"
+					iconInset="false"
+					type="Navigation" />
+			</List>
+		</content>
+
+        <footer>
+			<OverflowToolbar>
+				<Button text="Accept" type="Accept" />
+				<Button text="Reject" type="Reject" />
+				<Button text="Edit" />
+				<Button text="Delete" />
+			</OverflowToolbar>
+		</footer>   
+     </Page>
 </mvc:View>

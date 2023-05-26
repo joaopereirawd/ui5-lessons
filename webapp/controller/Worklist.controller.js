@@ -54,7 +54,7 @@ sap.ui.define([
                 });
             },
 
-            cona: function (msg) {
+            generalMessages: function (msg) {
                 //debugger;
 
                 sap.m.MessageToast.show(msg, {

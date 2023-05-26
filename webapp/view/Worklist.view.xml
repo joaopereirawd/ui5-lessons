@@ -2,7 +2,7 @@
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m">
 
-     <Page id="worklist" title="Clients">
+    <Page id="worklist" title="Clients">
 		<content>
 	  	    <Button 
 				id="btn" 
@@ -24,6 +24,10 @@
 					type="Navigation"
 				/>
 			</List>
+
+			<Text text="{ModelClients>/Idcliente}"></Text>
+
+			<Button text="Novo Cliente" press="onPressNovoCliente"></Button>
 		</content>
 
         <footer>
@@ -34,5 +38,5 @@
 				<Button text="Delete" /> -->
 			</OverflowToolbar>
 		</footer>   
-     </Page>
+    </Page>
 </mvc:View>

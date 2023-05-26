@@ -25,6 +25,7 @@ sap.ui.define([
                 var that = this;
 
                 that.oModelClients = new JSONModel();
+                that.oModelClientZero = new JSONModel();
 
                 var oModel = this.getView().getModel();
 
@@ -32,7 +33,11 @@ sap.ui.define([
                     success: function (oData) {
                         that.oModelClients.setData(oData);
                         that.getView().setModel(that.oModelClients, "ModelClients")
-                        console.log(that.oModelClients, 'oData');
+                        //console.log(that.oModelClients, 'oData');
+
+                        that.oModelClientZero.setData(oData.results[0])
+                        that.getView().setModel(that.oModelClientZero, "ModelClientZero")
+
                     }, error: function (error) { that._errorMessages(error) }
                 });
             },
@@ -71,6 +76,44 @@ sap.ui.define([
                     animationDuration: 1000,         // default
                     closeOnBrowserNavigation: true   // default
                 });
-            }
+            },
+            onPressNovoCliente: function () {
+                var _newClientDialog = sap.ui.xmlfragment("client.view.fragments.NewClientDialog", this);
+
+                this.getView().addDependent(_newClientDialog);
+
+                _newClientDialog.open();
+
+                this.oModelClientSend = new JSONModel();
+
+                this.oModelClientSend.setData({
+                    Nomecliente: "",
+                    Idcliente: ""
+                });
+
+                this.getView().setModel(this.oModelClientSend, "ModelClientSend");
+            },
+
+            onSaveClient: function () {
+                var oSendModelData = this.getView().getModel("ModelClientSend").getData();
+                var oModel = this.getView().getModel();
+                var oEntry = {};
+
+                oEntry.Idcliente = oSendModelData.Idcliente;
+                oEntry.Nomecliente = oSendModelData.Nomecliente;
+                oEntry.Validodesde = "2023-05-22T00:00:00";
+                oEntry.Validoate = "2023-05-22T00:00:00";
+
+                oModel.create("/ClientsSet", oEntry, null, {
+
+                    success: function (oData) {
+                        debugger;
+                    },
+
+                    error: function () {
+
+                    }
+                });
+            },
         });
     });

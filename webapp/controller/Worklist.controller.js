@@ -33,15 +33,31 @@ sap.ui.define([
                         that.oModelClients.setData(oData);
                         that.getView().setModel(that.oModelClients, "ModelClients")
                         console.log(that.oModelClients, 'oData');
-
-                    }, error: function (oData) { console.log(oData) }
+                    }, error: function (error) { that._errorMessages(error) }
                 });
             },
 
-            onPress: function () {
+            _errorMessages(error) {
+                sap.m.MessageToast.show(error.message, {
+                    duration: 3000,                  // default
+                    width: "15em",                   // default
+                    my: "center center",             // default
+                    at: "center center",             // default
+                    of: window,                      // default
+                    offset: "0 0",                   // default
+                    collision: "fit fit",            // default
+                    onClose: null,                   // default
+                    autoClose: true,                 // default
+                    animationTimingFunction: "ease", // default
+                    animationDuration: 1000,         // default
+                    closeOnBrowserNavigation: true   // default
+                });
+            },
+
+            cona: function (msg) {
                 //debugger;
 
-                sap.m.MessageToast.show("This message should appear in the message toast", {
+                sap.m.MessageToast.show(msg, {
                     duration: 3000,                  // default
                     width: "15em",                   // default
                     my: "center center",             // default

@@ -4,11 +4,7 @@
 
      <Page id="worklist" title="Clients">
 		<content>
-	  	    <Button id="btn" icon="sap-icon://edit" type="Transparent" press="onPress" ariaLabelledBy="editButtonLabel"/>
-
-			<List items="{meuModel>/Clients}">
-                <StandardListItem title="{meuModel>Nomecliente}" />
-            </List>
+	  	    <Button id="btn" icon="sap-icon://edit" type="Transparent" press="cona('My message goes here')" ariaLabelledBy="editButtonLabel"/>
 			
 			<List
 				headerText="Products"

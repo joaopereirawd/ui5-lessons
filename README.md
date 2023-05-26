@@ -7,7 +7,6 @@
 |**Generation Platform**<br>Visual Studio Code|
 |**Template Used**<br>simple|
 |**Service Type**<br>OData Url|
-|**Service URL**<br>http://roffprojectos.roff.pt:50000/sap/opu/odata/sap/ZCLIENTS_SRV
 |**Module Name**<br>client|
 |**Application Title**<br>Client|
 |**Namespace**<br>|

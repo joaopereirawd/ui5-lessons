@@ -77,6 +77,7 @@ sap.ui.define([
                     closeOnBrowserNavigation: true   // default
                 });
             },
+
             onPressNovoCliente: function () {
                 var _newClientDialog = sap.ui.xmlfragment("client.view.fragments.NewClientDialog", this);
 
@@ -97,6 +98,7 @@ sap.ui.define([
             onSaveClient: function () {
                 var oSendModelData = this.getView().getModel("ModelClientSend").getData();
                 var oModel = this.getView().getModel();
+
                 var oEntry = {};
 
                 oEntry.Idcliente = oSendModelData.Idcliente;
@@ -104,16 +106,25 @@ sap.ui.define([
                 oEntry.Validodesde = "2023-05-22T00:00:00";
                 oEntry.Validoate = "2023-05-22T00:00:00";
 
+
                 oModel.create("/ClientsSet", oEntry, null, {
 
                     success: function (oData) {
-                        debugger;
+                        console.log(oData.code, 'Success');
                     },
 
-                    error: function () {
+                    error: function (err) {
+                        debugger;
+                        console.log(err.code, 'Success');
 
                     }
                 });
             },
+
+            itemNavigationHandler(Event) {
+                let oItem = Event.getSource();
+                let oRouter = this.getOwnerComponent().getRouter();
+                oRouter.navTo("detail");
+            }
         });
     });

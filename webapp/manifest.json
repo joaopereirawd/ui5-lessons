@@ -99,6 +99,13 @@
           "target": [
             "worklist"
           ]
+        },
+        {
+          "name": "detail",
+          "pattern": "detail",
+          "target": [
+            "detail"
+          ]
         }
       ],
       "targets": {
@@ -107,6 +114,11 @@
           "viewType": "XML",
           "viewId": "worklist",
           "viewName": "Worklist"
+        },
+        "detail": {
+          "viewType": "XML",
+          "viewId": "detail",
+          "viewName": "Detail"
         }
       }
     },

@@ -3,6 +3,8 @@
     xmlns="sap.m">
 
     <Page id="worklist" title="Clients">
+		<Button text="Novo Cliente" press="onPressNovoCliente"></Button>
+
 		<content>
 	  	    <Button 
 				id="btn" 
@@ -17,17 +19,17 @@
 				items="{path: 'ModelClients>/results'}"
 			>
 
-				<StandardListItem
-					title="{ModelClients>Nomecliente}"
-					iconDensityAware="false"
-					iconInset="false"
-					type="Navigation"
-				/>
+			<StandardListItem
+				title="{ModelClients>Nomecliente}"
+				iconDensityAware="false"
+				iconInset="false"
+				type="Navigation"
+				press="itemNavigationHandler"
+			/>
 			</List>
 
 			<Text text="{ModelClients>/Idcliente}"></Text>
 
-			<Button text="Novo Cliente" press="onPressNovoCliente"></Button>
 		</content>
 
         <footer>

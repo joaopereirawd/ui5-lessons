@@ -5,8 +5,6 @@
         <content />
     </Page> -->
     <Shell>
-        <App id="app">
-
-        </App>
+        <App id="app"></App>
     </Shell>
 </mvc:View>

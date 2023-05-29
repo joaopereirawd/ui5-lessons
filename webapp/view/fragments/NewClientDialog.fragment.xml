@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m"> 
+    <Dialog title="Novo Cliente"> 
+        <content> 
+            <Label text="NomeCliente"></Label>
+            <Input value="{ModelClientSend>/Nomecliente}" ></Input>
+            <Label text="IdCliente"></Label>
+            <Input value="{ModelClientSend>/Idcliente}"></Input>
+        </content> 
+        
+        <buttons> 
+            <Button text="Guardar" press="onSaveClient"></Button>
+        </buttons> 
+    </Dialog> 
+</core:FragmentDefinition>

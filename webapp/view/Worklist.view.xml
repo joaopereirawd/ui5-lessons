@@ -2,7 +2,9 @@
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m">
 
-     <Page id="worklist" title="Clients">
+    <Page id="worklist" title="Clients">
+		<Button text="Novo Cliente" press="onPressNovoCliente"></Button>
+
 		<content>
 	  	    <Button 
 				id="btn" 
@@ -17,13 +19,17 @@
 				items="{path: 'ModelClients>/results'}"
 			>
 
-				<StandardListItem
-					title="{ModelClients>Nomecliente}"
-					iconDensityAware="false"
-					iconInset="false"
-					type="Navigation"
-				/>
+			<StandardListItem
+				title="{ModelClients>Nomecliente}"
+				iconDensityAware="false"
+				iconInset="false"
+				type="Navigation"
+				press="itemNavigationHandler"
+			/>
 			</List>
+
+			<Text text="{ModelClients>/Idcliente}"></Text>
+
 		</content>
 
         <footer>
@@ -34,5 +40,5 @@
 				<Button text="Delete" /> -->
 			</OverflowToolbar>
 		</footer>   
-     </Page>
+    </Page>
 </mvc:View>

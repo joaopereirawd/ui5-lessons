@@ -2,20 +2,20 @@
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m">
 
-    <Page id="worklist" title="Clients">
-		<Button text="Novo Cliente" press="onPressNovoCliente"></Button>
-
-		<content>
-	  	    <Button 
+    <Page id="worklist">
+		<headerContent>
+			<Button text="Novo Cliente" press="onPressNovoCliente"></Button>
+			<Button 
 				id="btn" 
-				icon="sap-icon://edit" 
+				text="Test Button"
 				type="Transparent" 
 				press="generalMessages('My message goes here')" 
-				ariaLabelledBy="editButtonLabel"
 			/>
-			
+		</headerContent>
+		
+		<content>
 			<List
-				headerText="Products"
+				headerText="Clients"
 				items="{path: 'ModelClients>/results'}"
 			>
 
@@ -24,7 +24,7 @@
 				iconDensityAware="false"
 				iconInset="false"
 				type="Navigation"
-				press="itemNavigationHandler"
+				press="onItemPress"
 			/>
 			</List>
 

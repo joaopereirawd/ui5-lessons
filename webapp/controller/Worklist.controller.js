@@ -115,16 +115,29 @@ sap.ui.define([
 
                     error: function (err) {
                         debugger;
-                        console.log(err.code, 'Success');
-
+                        console.log(err.code, 'error');
                     }
                 });
             },
 
-            itemNavigationHandler(Event) {
-                let oItem = Event.getSource();
-                let oRouter = this.getOwnerComponent().getRouter();
-                oRouter.navTo("detail");
+            onItemPress(oEvent) {
+                // Obtém o item pressionado
+                var oSelectedItem = oEvent.getSource();
+
+                // Obtém o caminho do item selecionado para obter os dados correspondentes
+                var sPath = oSelectedItem.getBindingContextPath();
+                //console.log(sPath);
+
+                // Obtém o modelo de dados atual
+                var oModel = oSelectedItem.getModel("ModelClients");
+
+                // Obtém os dados do item selecionado com base no caminho
+                var oSelectedData = oModel.getProperty(sPath);
+
+                // Navega para a página de detalhes e passa os dados selecionados
+                this.getOwnerComponent().getRouter().navTo("detail", {
+                    clientID: oSelectedData.Idcliente // Supondo que o objeto de dados tenha uma propriedade chamada Idcliente
+                });
             }
         });
     });

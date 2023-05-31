@@ -2,31 +2,21 @@
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m">
 
-    <Page id="detail" title="Detail Page" showNavButton="true" navButtonPress="goBack">
-		<ObjectHeader
-			binding="{/ProductCollection/0}"
-			title="Client Name"
-			condensed="true"
-			number="{
-				parts:[{path:'Price'},{path:'CurrencyCode'}],
-				type: 'sap.ui.model.type.Currency',
-				formatOptions: {showMeasure: false}
-			}"
-			numberUnit="{CurrencyCode}"
-			class="sapUiResponsivePadding--header" >
-			<ObjectAttribute text="{WeightMeasure} {WeightUnit} {Width} x {Depth} x {Height} {DimUnit}" />
-		</ObjectHeader>
+    <Page id="detail" title="{detail>/Nomecliente}" showNavButton="true" navButtonPress="goBack">
 
 		<content>
-			<Button text="Estamos dentro"></Button>
+			<Text text="{detail>/Nomecliente}" />
 		</content>
 
         <footer>
 			<OverflowToolbar>
-	<!-- 			<Button text="Accept" type="Accept" />
-				<Button text="Reject" type="Reject" />
-				<Button text="Edit" />
-				<Button text="Delete" /> -->
+				<ToolbarSpacer/>
+				<Button 
+					type="Reject"
+					text="Delete"
+					press="deleteHandler()"
+					ariaDescribedBy="rejectButtonDescription genericButtonDescription"
+				></Button>
 			</OverflowToolbar>
 		</footer>   
     </Page>

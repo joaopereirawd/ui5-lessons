@@ -102,7 +102,7 @@
         },
         {
           "name": "detail",
-          "pattern": "detail",
+          "pattern": "detail/{clientID}",
           "target": [
             "detail"
           ]

@@ -1,1 +1,48 @@
-/* Enter your custom styles here */
+:root {
+    --inetum-primary: #028075;
+    --inetum-secondary: #232d4b;
+    --color-contrast-lower: #fcfcfc;
+    --color-contrast-low: #fafafa;
+    --color-contrast-medium: #f7f7f7;
+    --color-contrast-high: #eee;
+}
+
+/**
+ * Overwrites
+ **/
+
+html.sap-desktop .sapMShellAppWidthLimited .sapMShellCentralBox {
+    width: 100% !important;
+    margin: inherit !important;
+    left: inherit;
+}
+
+
+.inetum-shell {
+    background: var(--color-contrast-high);
+}
+
+/**
+ * Searchfield
+ **/
+
+.search-box {
+    width: 100%;
+    height: inherit !important;
+    padding: 20px !important;
+    margin-bottom: 20px;
+    background: var(--inetum-primary);
+}
+
+/**
+ * Homepage List
+ **/
+
+.homepage-list {
+    padding: 0 20px;
+}
+
+.homepage-list>ul li:last-child {
+    border-bottom-left-radius: .75rem;
+    border-bottom-right-radius: .75rem;
+}

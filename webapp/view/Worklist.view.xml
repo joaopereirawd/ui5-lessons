@@ -1,10 +1,15 @@
-<mvc:View controllerName="client.controller.Worklist"
+<mvc:View 
+	controllerName="client.controller.Worklist"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
-
+    xmlns="sap.m"
+>
     <Page id="worklist">
 		<headerContent>
-			<Button text="Novo Cliente" press="onPressNovoCliente"></Button>
+			<Button 
+				text="Novo Cliente" 
+				press="onPressNovoCliente"
+			></Button>
+
 			<Button 
 				id="btn" 
 				text="Test Button"
@@ -12,33 +17,39 @@
 				press="generalMessages('My message goes here')" 
 			/>
 		</headerContent>
-		
-		<content>
-			<List
-				headerText="Clients"
-				items="{path: 'ModelClients>/results'}"
-			>
 
-			<StandardListItem
-				title="{ModelClients>Nomecliente}"
-				iconDensityAware="false"
-				iconInset="false"
-				type="Navigation"
-				press="onItemPress"
-			/>
-			</List>
+		<SearchField 
+			class="search-box" 
+			liveChange=".onLiveSearch" 
+			placeholder="Pesquisar..." 
+			width="100%" 
+		/>
+
+		<content>
+     		<List 
+				headerText="Clients"
+				class="homepage-list"
+				id="list" 
+				items="{path: 'ModelClients>/results'}" 
+				selectionChange="onSelectionChange"
+				growing="true"
+				growingThreshold="50"
+			>
+                <items>
+                    <StandardListItem 
+						iconDensityAware="false"
+						iconInset="false"  
+						title="{ModelClients>Nomecliente}" 
+						description="{ModelClients>Descricao}" 
+						type="Navigation" 
+						press="onItemPress"  
+					/>
+                </items>
+            </List>
 
 			<Text text="{ModelClients>/Idcliente}"></Text>
-
 		</content>
 
-        <footer>
-			<OverflowToolbar>
-	<!-- 			<Button text="Accept" type="Accept" />
-				<Button text="Reject" type="Reject" />
-				<Button text="Edit" />
-				<Button text="Delete" /> -->
-			</OverflowToolbar>
-		</footer>   
+        <footer></footer>   
     </Page>
 </mvc:View>

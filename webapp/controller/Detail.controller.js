@@ -1,12 +1,12 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
-    "sap/ui/model/Filter",
+    "sap/m/MessageToast"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, JSONModel, Filter) {
+    function (Controller, JSONModel, MessageToast) {
         "use strict";
 
         return Controller.extend("client.controller.Detail", {
@@ -38,7 +38,7 @@ sap.ui.define([
 
                     }.bind(this),
                     error: function (error) {
-                        console.error("Erro ao ler os dados do cliente:", error);
+                        MessageToast.show("Erro ao ler os dados do cliente:", error);
                     }
                 });
 
@@ -53,19 +53,24 @@ sap.ui.define([
 
                 var sPath = "/ClientsSet('" + id + "')";
 
+                var that = this;
+
                 oModel.remove(sPath, {
                     success: function (data) {
-                        console.log(data, "Item excluído com sucesso");
+                        MessageToast.show('Este Cliente foi removido da lista');
+
+                        that.goBack();
+
                     },
                     error: function (error) {
-                        console.log("Erro ao excluir o item: " + error.message);
+                        MessageToast.show("Erro ao excluir o item: " + error.message);
                     }
                 });
             },
 
             goBack() {
-                let oRouter = this.getOwnerComponent().getRouter();
-                oRouter.navTo("worklist");
+                this.oRouter = this.getOwnerComponent().getRouter();
+                this.oRouter.navTo("worklist");
             }
         });
     });

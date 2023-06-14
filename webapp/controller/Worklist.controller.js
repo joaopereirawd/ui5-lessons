@@ -2,11 +2,13 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
     "sap/m/MessageToast",
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, JSONModel) {
+    function (Controller, JSONModel, Filter, FilterOperator) {
         "use strict";
 
         return Controller.extend("client.controller.Worklist", {
@@ -79,11 +81,11 @@ sap.ui.define([
             },
 
             onPressNovoCliente: function () {
-                var _newClientDialog = sap.ui.xmlfragment("client.view.fragments.NewClientDialog", this);
+                this.dialog = sap.ui.xmlfragment("client.view.fragments.NewClientDialog", this);
 
-                this.getView().addDependent(_newClientDialog);
+                this.getView().addDependent(this.dialog);
 
-                _newClientDialog.open();
+                this.dialog.open();
 
                 this.oModelClientSend = new JSONModel();
 
@@ -95,10 +97,15 @@ sap.ui.define([
                 this.getView().setModel(this.oModelClientSend, "ModelClientSend");
             },
 
+            onCloseDialog: function () {
+                if (this.dialog) {
+                    this.dialog.close();
+                }
+            },
+
             onSaveClient: function () {
                 var oSendModelData = this.getView().getModel("ModelClientSend").getData();
                 var oModel = this.getView().getModel();
-
                 var oEntry = {};
 
                 oEntry.Idcliente = oSendModelData.Idcliente;
@@ -106,18 +113,47 @@ sap.ui.define([
                 oEntry.Validodesde = "2023-05-22T00:00:00";
                 oEntry.Validoate = "2023-05-22T00:00:00";
 
-
                 oModel.create("/ClientsSet", oEntry, null, {
-
                     success: function (oData) {
-                        console.log(oData.code, 'Success');
+                        console.log(oData, 'Success');
                     },
-
                     error: function (err) {
-                        debugger;
-                        console.log(err.code, 'error');
+                        console.log(err, 'error');
                     }
                 });
+            },
+            /*             onLiveSearch: function (oEvent) {
+                            var sQuery = oEvent.getParameter("newValue");
+                            var oFilter = new sap.ui.model.Filter("Name", sap.ui.model.FilterOperator.Contains, sQuery);
+            
+                            var oList = this.getView().byId("list");
+            
+                            var oBinding = oList.getBinding("items");
+                            oBinding.filter([oFilter]);
+                        },
+             */
+            onLiveSearch: function (oEvent) {
+                // add filter for search
+                var aFilters = [];
+                var sQuery = oEvent.getSource().getValue();
+
+                // Why I can't pass as Filter and FilterOperator
+                if (sQuery && sQuery.length > 0) {
+                    var filter = new sap.ui.model.Filter("Name", sap.ui.model.FilterOperator.Contains, sQuery);
+                    aFilters.push(filter);
+
+                    console.log(aFilters);
+                }
+
+                // update list binding
+                var oList = this.byId("list");
+                var oBinding = oList.getBinding("items");
+                oBinding.filter(aFilters, "Application");
+            },
+
+            onSelectionChange: function (oEvent) {
+                console.log(oEvent);
+                debugger;
             },
 
             onItemPress(oEvent) {
@@ -138,6 +174,6 @@ sap.ui.define([
                 this.getOwnerComponent().getRouter().navTo("detail", {
                     clientID: oSelectedData.Idcliente // Supondo que o objeto de dados tenha uma propriedade chamada Idcliente
                 });
-            }
+            },
         });
     });

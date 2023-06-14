@@ -2,12 +2,41 @@
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m">
 
-    <Page id="detail" title="{detail>/Nomecliente}" showNavButton="true" navButtonPress="goBack">
+    <Page id="detail" showNavButton="true" navButtonPress="goBack">
+		<ObjectHeader
+			title="{detail>/Nomecliente}"
+			condensed="true"
+			class="sapUiResponsivePadding--header"
+		>
+			<ObjectAttribute text="lorem ipsim" />
+		</ObjectHeader>
+	
 
-		<content>
-			<Text text="{detail>/Nomecliente}" />
-		</content>
+		<IconTabBar
+			id="idIconTabBarFiori2"
+			class="sapUiResponsiveContentPadding"
+		>
 
+			<items>
+				<IconTabFilter
+					text="Wiki"
+					key="wiki"
+				>
+
+					<VBox>
+						<Text text="Lorem ipsum dolor st amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat" />
+					</VBox>
+				</IconTabFilter>
+
+				<IconTabFilter
+					text="Acessos"
+					key="acessos"
+				>
+
+					<Text text="Attachments go here ..." />
+				</IconTabFilter>
+			</items>
+		</IconTabBar>
         <footer>
 			<OverflowToolbar>
 				<ToolbarSpacer/>

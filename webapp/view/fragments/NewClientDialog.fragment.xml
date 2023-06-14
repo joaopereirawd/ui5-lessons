@@ -2,13 +2,17 @@
     <Dialog title="Novo Cliente"> 
         <content> 
             <Label text="NomeCliente"></Label>
-            <Input value="{ModelClientSend>/Nomecliente}" ></Input>
+            <Input value="{ModelClientSend>/Nomecliente}" required="true"></Input>
             <Label text="IdCliente"></Label>
-            <Input value="{ModelClientSend>/Idcliente}"></Input>
+            <Input value="{ModelClientSend>/Idcliente}" required="true"></Input>
         </content> 
         
         <buttons> 
             <Button text="Guardar" press="onSaveClient"></Button>
+        </buttons>
+
+        <buttons> 
+            <Button text="Cancelar" press="onCloseDialog"></Button>
         </buttons> 
     </Dialog> 
 </core:FragmentDefinition>

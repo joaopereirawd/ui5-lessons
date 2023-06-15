@@ -17,13 +17,15 @@
 				press="generalMessages('My message goes here')" 
 			/>
 		</headerContent>
-
-		<SearchField 
-			class="search-box" 
-			liveChange=".onLiveSearch" 
-			placeholder="Pesquisar..." 
-			width="100%" 
-		/>
+		
+		<VBox class="allow-us-to-have-a-wrapper-div">
+			<SearchField 
+				class="search-box" 
+				liveChange=".onLiveSearch" 
+				placeholder="Pesquisar..." 
+				width="100%" 
+			/>
+		</VBox>
 
 		<content>
      		<List 
@@ -31,7 +33,6 @@
 				class="homepage-list"
 				id="list" 
 				items="{path: 'ModelClients>/results'}" 
-				selectionChange="onSelectionChange"
 				growing="true"
 				growingThreshold="50"
 			>

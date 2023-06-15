@@ -10,7 +10,6 @@
 /**
  * Overwrites
  **/
-
 html.sap-desktop .sapMShellAppWidthLimited .sapMShellCentralBox {
     width: 100% !important;
     margin: inherit !important;
@@ -25,7 +24,6 @@ html.sap-desktop .sapMShellAppWidthLimited .sapMShellCentralBox {
 /**
  * Searchfield
  **/
-
 .search-box {
     width: 100%;
     height: inherit !important;

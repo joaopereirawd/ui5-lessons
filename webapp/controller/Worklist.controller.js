@@ -8,7 +8,7 @@ sap.ui.define([
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, JSONModel, Filter, FilterOperator) {
+    function (Controller, JSONModel, MessageToast, Filter, FilterOperator) {
         "use strict";
 
         return Controller.extend("client.controller.Worklist", {
@@ -45,7 +45,7 @@ sap.ui.define([
             },
 
             _errorMessages(error) {
-                sap.m.MessageToast.show(error.message, {
+                MessageToast.show(error.message, {
                     duration: 3000,                  // default
                     width: "15em",                   // default
                     my: "center center",             // default
@@ -64,7 +64,7 @@ sap.ui.define([
             generalMessages: function (msg) {
                 //debugger;
 
-                sap.m.MessageToast.show(msg, {
+                MessageToast.show(msg, {
                     duration: 3000,                  // default
                     width: "15em",                   // default
                     my: "center center",             // default
@@ -122,24 +122,14 @@ sap.ui.define([
                     }
                 });
             },
-            /*             onLiveSearch: function (oEvent) {
-                            var sQuery = oEvent.getParameter("newValue");
-                            var oFilter = new sap.ui.model.Filter("Name", sap.ui.model.FilterOperator.Contains, sQuery);
-            
-                            var oList = this.getView().byId("list");
-            
-                            var oBinding = oList.getBinding("items");
-                            oBinding.filter([oFilter]);
-                        },
-             */
+
             onLiveSearch: function (oEvent) {
                 // add filter for search
                 var aFilters = [];
                 var sQuery = oEvent.getSource().getValue();
 
-                // Why I can't pass as Filter and FilterOperator
                 if (sQuery && sQuery.length > 0) {
-                    var filter = new sap.ui.model.Filter("Name", sap.ui.model.FilterOperator.Contains, sQuery);
+                    var filter = new Filter("Nomecliente", FilterOperator.Contains, sQuery);
                     aFilters.push(filter);
 
                     console.log(aFilters);
@@ -148,12 +138,7 @@ sap.ui.define([
                 // update list binding
                 var oList = this.byId("list");
                 var oBinding = oList.getBinding("items");
-                oBinding.filter(aFilters, "Application");
-            },
-
-            onSelectionChange: function (oEvent) {
-                console.log(oEvent);
-                debugger;
+                oBinding.filter(aFilters);
             },
 
             onItemPress(oEvent) {

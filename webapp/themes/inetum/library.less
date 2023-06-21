@@ -1,0 +1,30 @@
+@import 'variables/variables.less';
+@import 'searchbox.less';
+
+/**
+ * Overwrites
+ **/
+html.sap-desktop .sapMShellAppWidthLimited .sapMShellCentralBox {
+    width: 100% !important;
+    margin: inherit !important;
+    left: inherit !important;
+}
+
+
+.inetum-shell {
+    background: var(--color-contrast-high);
+}
+
+/**
+ * Homepage List
+ **/
+.homepage-list {
+    padding: 0 20px !important;
+
+    ul li {
+        &:last-child {
+            border-bottom-left-radius: .75rem;
+            border-bottom-right-radius: .75rem;
+        }
+    }
+}

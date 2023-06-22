@@ -1,0 +1,57 @@
+<!-- <mvc:View 
+	controllerName="client.controller.Worklist"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+>
+    <Page id="worklist">
+		<headerContent>
+			<Button 
+				text="Novo Cliente" 
+				press="onPressNovoCliente"
+			></Button>
+
+			<Button 
+				id="btn" 
+				text="Test Button"
+				type="Transparent" 
+				press="generalMessages('My message goes here')" 
+			/>
+		</headerContent>
+		
+		<VBox class="allow-us-to-have-a-wrapper-div">
+			<SearchField 
+				class="search-box" 
+				liveChange=".onLiveSearch" 
+				placeholder="Pesquisar..." 
+				width="100%" 
+			/>
+		</VBox>
+
+		<content>
+     		<List 
+				headerText="Clients"
+				class="homepage-list"
+				id="list" 
+				items="{path: 'ModelClients>/results'}" 
+				growing="true"
+				growingThreshold="50"
+			>
+                <items>
+                    <StandardListItem 
+						iconDensityAware="false"
+						iconInset="false"  
+						title="{ModelClients>Nomecliente}" 
+						description="{ModelClients>Descricao}" 
+						type="Navigation" 
+						press="onItemPress"  
+					/>
+                </items>
+            </List>
+
+			<Text text="{ModelClients>/Idcliente}"></Text>
+		</content>
+
+        <footer></footer>   
+    </Page>
+</mvc:View>
+ -->

@@ -1,0 +1,73 @@
+<core:FragmentDefinition
+	xmlns:m="sap.m"
+	xmlns:f="sap.f"
+	xmlns="sap.ui.webc.main"
+	xmlns:fiori="sap.ui.webc.fiori"
+	xmlns:core="sap.ui.core">
+	<f:DynamicPage 
+		id="dynamicPageId"
+		stickySubheaderProvider="iconTabBar"
+		class="sapUiNoContentPadding">
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:expandedHeading>
+					<m:Title text="{ModelClients>/selectedClient/Nomecliente}" wrapping="true" class="sapUiSmallMarginEnd"/>
+				</f:expandedHeading>
+
+				<f:snappedHeading>
+					<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
+						<m:FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
+							<m:Title text="{ModelClients>/selectedClient/Nomecliente}" wrapping="true" class="sapUiTinyMarginEnd"/>
+						</m:FlexBox>
+					</m:FlexBox>
+				</f:snappedHeading>
+
+				<f:navigationActions>
+					<m:OverflowToolbarButton type="Transparent" icon="sap-icon://decline" press="handleMidClose"  tooltip="Close middle column"/>
+				</f:navigationActions>
+
+				<f:actions>
+					<m:Button
+							text="Edit"
+							type="Emphasized"
+							press="toggleAreaPriority"/>
+					<m:Button
+							text="Copy"
+							type="Transparent"/>
+					<m:Button
+							icon="sap-icon://action"
+							type="Transparent"/>
+				</f:actions>
+			</f:DynamicPageTitle>
+		</f:title>
+
+		<f:content>
+			<m:IconTabBar
+				id="idIconTabBarMulti"
+				expanded="{device>/isNoPhone}"
+				expandable="false"
+				class="sapUiResponsiveContentPadding">
+					<m:items>
+						<m:IconTabFilter icon="sap-icon://hint" key="info">
+						
+							<m:Text text="Info content goes here ..." />
+						</m:IconTabFilter>
+
+						<m:IconTabFilter
+							icon="sap-icon://key"
+							key="attachments">
+
+							<m:Text text="Attachments go here ..." />
+						</m:IconTabFilter>
+
+						<m:IconTabFilter
+							icon="sap-icon://notes"
+							key="notes">
+
+							<m:Text text="Notes go here ..." />
+						</m:IconTabFilter>
+					</m:items>
+				</m:IconTabBar>
+		</f:content>
+	</f:DynamicPage>
+</core:FragmentDefinition>

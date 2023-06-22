@@ -1,31 +1,25 @@
 <mvc:View 
  	displayBlock="true"
-	controllerName="client.controller.AsideDetail"
+	controllerName="client.controller.Main"
 	xmlns:m="sap.m"
+	xmlns:f="sap.f"
 	xmlns:main="sap.ui.webc.main"
 	xmlns="sap.ui.webc.fiori"
-	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
 	height="100%"
 >
-
-	<FlexibleColumnLayout id="fcl" layout="OneColumn">
-
-		<startColumn>
-				<core:Fragment
-					fragmentName="client.view.fragments.AsideStartColumn"
-					type="XML"
-				/>
-		</startColumn>
-
-		<midColumn>
+	<f:FlexibleColumnLayout id="fcl" stateChange="onStateChanged" backgroundDesign="Solid">
+		<f:beginColumnPages>
 			<core:Fragment
-				fragmentName="client.view.fragments.AsideMidColumn"
+				fragmentName="client.view.fragments.List"
 				type="XML"
 			/>
-		</midColumn>
+		</f:beginColumnPages>
 
-	</FlexibleColumnLayout>
-
+		<f:midColumnPages>
+			<mvc:XMLView viewName="client.view.Detail" />
+		</f:midColumnPages>
+	</f:FlexibleColumnLayout>
 </mvc:View>
 

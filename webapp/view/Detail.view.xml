@@ -1,52 +1,69 @@
-<mvc:View controllerName="client.controller.Detail"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
+<mvc:View 
+ 	displayBlock="true"
+	controllerName="client.controller.Detail"
+	xmlns:m="sap.m"
+	xmlns:f="sap.f"
+	xmlns:main="sap.ui.webc.main"
+	xmlns="sap.ui.webc.fiori"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	height="100%"
+>
+	<f:DynamicPage 
+		id="dynamicPageId"
+		stickySubheaderProvider="iconTabBar"
+		class="sapUiNoContentPadding">
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:expandedHeading>
+					<m:Title text="{ModelClients>/selectedClient/Nomecliente}" wrapping="true" class="sapUiSmallMarginEnd"/>
+				</f:expandedHeading>
 
-    <Page id="detail" showNavButton="true" navButtonPress="goBack">
-		<ObjectHeader
-			title="{detail>/Nomecliente}"
-			condensed="true"
-			class="sapUiResponsivePadding--header"
-		>
-			<ObjectAttribute text="lorem ipsim" />
-		</ObjectHeader>
-	
+				<f:snappedHeading>
+					<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
+						<m:FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
+							<m:Title text="{ModelClients>/selectedClient/Nomecliente}" wrapping="true" class="sapUiTinyMarginEnd"/>
+						</m:FlexBox>
+					</m:FlexBox>
+				</f:snappedHeading>
 
-		<IconTabBar
-			id="idIconTabBarFiori2"
-			class="sapUiResponsiveContentPadding"
-		>
+				<f:navigationActions>
+					<m:OverflowToolbarButton type="Transparent" icon="sap-icon://decline" press="setOneColumn"  tooltip="Close middle column"/>
+				</f:navigationActions>
 
-			<items>
-				<IconTabFilter
-					text="Wiki"
-					key="wiki"
-				>
+				<f:actions>
+					<m:Button 
+						type="Reject"
+						text="Delete"
+						press="deleteHandler"
+						ariaDescribedBy="rejectButtonDescription genericButtonDescription">
+					</m:Button>
+				</f:actions>
+			</f:DynamicPageTitle>
+		</f:title>
 
-					<VBox>
-						<Text text="Lorem ipsum dolor st amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat" />
-					</VBox>
-				</IconTabFilter>
+		<f:content>
+			<m:IconTabBar
+				id="idIconTabBarMulti"
+				expanded="{device>/isNoPhone}"
+				expandable="false"
+				class="sapUiResponsiveContentPadding">
+					<m:items>
+						<core:Fragment
+							fragmentName="client.view.fragments.tabs.Wiki"
+							type="XML"
+						/>
 
-				<IconTabFilter
-					text="Acessos"
-					key="acessos"
-				>
-
-					<Text text="Attachments go here ..." />
-				</IconTabFilter>
-			</items>
-		</IconTabBar>
-        <footer>
-			<OverflowToolbar>
-				<ToolbarSpacer/>
-				<Button 
-					type="Reject"
-					text="Delete"
-					press="deleteHandler()"
-					ariaDescribedBy="rejectButtonDescription genericButtonDescription"
-				></Button>
-			</OverflowToolbar>
-		</footer>   
-    </Page>
+						<core:Fragment
+							fragmentName="client.view.fragments.tabs.Keys"
+							type="XML"
+						/>
+						<core:Fragment
+							fragmentName="client.view.fragments.tabs.Notes"
+							type="XML"
+						/>
+					</m:items>
+			</m:IconTabBar>
+		</f:content>
+	</f:DynamicPage>
 </mvc:View>

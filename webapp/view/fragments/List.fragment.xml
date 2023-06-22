@@ -1,0 +1,63 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:f="sap.f"
+	xmlns:core="sap.ui.core"
+	height="100%"
+	>
+
+	<f:DynamicPage id="yes" toggleHeaderOnTitleClick="false">
+	
+		<!-- DynamicPage Title -->
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<Title text="Projects"/>
+				</f:heading>
+
+				<f:actions>
+					<Button
+							text="New Project"
+							type="Emphasized"
+							press="handleNewProject"/>
+				</f:actions>
+			</f:DynamicPageTitle>
+		</f:title>
+
+		<!-- DynamicPage Content -->
+		<f:content>
+			<VBox fitContainer="true">
+				<OverflowToolbar class="sapFDynamicPageAlignContent">
+					<ToolbarSpacer/>
+					<SearchField id="searchField"  width="17.5rem" liveChange="onLiveSearch" />
+				</OverflowToolbar>
+
+				<Table
+					id="projects-table"
+					inset="false"
+					items="{path: 'ModelClients>/results'}"
+					class="sapFDynamicPageAlignContent"
+					width="auto">
+
+					<!-- Columns -->
+					<columns>
+						<Column width="12em">
+							<Text text="Projects"/>
+						</Column>
+					</columns>
+
+					<!-- Items -->
+					<items>
+						<ColumnListItem type="Navigation" press="TwoColumnsMidExpanded">
+							<cells>
+								<ObjectIdentifier title="{ModelClients>Nomecliente}" text="{ModelClients>Nomecliente}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</VBox>
+		</f:content>
+	</f:DynamicPage>
+</core:FragmentDefinition>
+
+
+

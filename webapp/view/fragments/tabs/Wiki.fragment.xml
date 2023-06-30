@@ -1,0 +1,12 @@
+<core:FragmentDefinition
+	xmlns:m="sap.m"
+	xmlns:f="sap.f"
+	xmlns="sap.ui.webc.main"
+	xmlns:fiori="sap.ui.webc.fiori"
+	xmlns:core="sap.ui.core">
+		<m:IconTabFilter icon="sap-icon://hint" key="info">
+			<m:VBox class="sapUiSmallMargin">
+				<m:FormattedText htmlText="{/HTML}"/>
+			</m:VBox>
+		</m:IconTabFilter>
+</core:FragmentDefinition>

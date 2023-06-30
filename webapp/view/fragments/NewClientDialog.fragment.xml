@@ -1,18 +1,27 @@
-<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m"> 
-    <Dialog title="Novo Cliente"> 
-        <content> 
-            <Label text="NomeCliente"></Label>
-            <Input value="{ModelClientSend>/Nomecliente}" required="true"></Input>
-            <Label text="IdCliente"></Label>
-            <Input value="{ModelClientSend>/Idcliente}" required="true"></Input>
-        </content> 
-        
-        <buttons> 
-            <Button text="Guardar" press="onSaveClient"></Button>
-        </buttons>
+<core:FragmentDefinition 
+    xmlns:core="sap.ui.core" 
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:l="sap.ui.layout"
+    > 
+    <Dialog title="Novo Cliente">
+		<content>
+			<VBox class="sapUiSmallMargin" id="formContainer">
+                <Label text="NomeCliente"></Label>
+                <Input value="{ModelClientSend>/Nomecliente}" required="true" class="sapUiTinyMarginBottom"></Input>
+                <Label text="IdCliente"></Label>
+                <Input value="{ModelClientSend>/Idcliente}" required="true"></Input>
+            </VBox>
+        </content>
 
-        <buttons> 
-            <Button text="Cancelar" press="onCloseDialog"></Button>
-        </buttons> 
+		<footer>
+			<Toolbar>
+				<content>
+                    <ToolbarSpacer/>
+                    <Button type="Emphasized" text="Guardar" press="handleSaveNewProject" class="sapUiTinyMarginTop sapUiTinyMarginBottom"></Button>
+                    <Button text="Cancelar" press="handleCloseDialog" class="sapUiTinyMarginTop sapUiTinyMarginBottom"></Button>
+				</content>
+			</Toolbar>
+		</footer>
     </Dialog> 
 </core:FragmentDefinition>

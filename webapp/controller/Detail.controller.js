@@ -1,76 +1,63 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller",
-    "sap/ui/model/json/JSONModel",
-    "sap/m/MessageToast"
-],
-    /**
-     * @param {typeof sap.ui.core.mvc.Controller} Controller
-     */
-    function (Controller, JSONModel, MessageToast) {
-        "use strict";
+    'sap/ui/core/mvc/Controller',
+    'sap/ui/model/json/JSONModel',
+    "sap/ui/webc/fiori/library",
+    "sap/m/MessageToast",
 
-        return Controller.extend("client.controller.Detail", {
-            onInit: function () {
-                var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-                oRouter.getRoute("detail").attachPatternMatched(this._onRouteMatched, this);
-            },
+], function (Controller, JSONModel, webcFioriLib, MessageToast) {
+    "use strict";
+    return Controller.extend("client.controller.Detail", {
+        onInit: function () {
+            this.FCLLayout = webcFioriLib.FCLLayout;
+            this.oModelClients = new JSONModel();
+            this.oModelClientZero = new JSONModel();
+        },
 
-            _onRouteMatched: function (oEvent) {
-                this.readHandler(oEvent);
-            },
+        deleteHandler() {
+            var that = this;
 
-            readHandler(oEvent) {
-                var that = this;
+            var oModel = this.getView().getModel();
 
-                var sClientId = parseInt(oEvent.getParameter("arguments").clientID);
+            var oModelDetail = this.getView().getModel('ModelClients').getData();
 
-                var oModel = this.getView().getModel();
+            var id = oModelDetail.selectedClient.Idcliente;
 
-                var sPath = "/ClientsSet('" + sClientId + "')";
+            var sPath = "/ClientsSet('" + id + "')";
 
-                oModel.read(sPath, {
-                    success: function (oData) {
-                        var oClient = oData;
+            oModel.remove(sPath, {
+                success: function (data) {
+                    MessageToast.show('Este Cliente foi removido da lista');
+                    that.setOneColumn();
 
-                        that.oModelClient = new JSONModel(oClient);
+                },
+                error: function (error) {
+                    MessageToast.show("Erro ao excluir o item: " + error.message);
+                }
+            });
+        },
 
-                        that.getView().setModel(that.oModelClient, "detail");
+        setOneColumn() {
+            var oFCL = this.getView().getParent().getParent();
+            oFCL.setLayout(this.FCLLayout.OneColumn);
 
-                    }.bind(this),
-                    error: function (error) {
-                        MessageToast.show("Erro ao ler os dados do cliente:", error);
-                    }
-                });
+            this.refreshData();
+        },
 
-            },
+        refreshData() {
+            console.log('lets refresh');
 
-            deleteHandler() {
-                var oModel = this.getView().getModel();
+            var that = this;
+            var oModel = this.getView().getModel();
 
-                var oModelDetail = this.getView().getModel('detail').getData();
+            oModel.read("/ClientsSet", {
+                success: function (oData) {
+                    that.oModelClients.setData(oData);
 
-                var id = oModelDetail.Idcliente;
+                    that.getView().setModel(that.oModelClients, "ModelClients")
+                    //console.log(that.oModelClients, 'oData');
 
-                var sPath = "/ClientsSet('" + id + "')";
-
-                var that = this;
-
-                oModel.remove(sPath, {
-                    success: function (data) {
-                        MessageToast.show('Este Cliente foi removido da lista');
-
-                        that.goBack();
-
-                    },
-                    error: function (error) {
-                        MessageToast.show("Erro ao excluir o item: " + error.message);
-                    }
-                });
-            },
-
-            goBack() {
-                this.oRouter = this.getOwnerComponent().getRouter();
-                this.oRouter.navTo("worklist");
-            }
-        });
+                }, error: function (error) { that._errorMessages(error) }
+            });
+        }
     });
+});

@@ -101,6 +101,13 @@
           ]
         },
         {
+          "name": "home",
+          "pattern": "",
+          "target": [
+            "home"
+          ]
+        },
+        {
           "name": "detail",
           "pattern": "detail/{clientID}",
           "target": [
@@ -109,6 +116,12 @@
         }
       ],
       "targets": {
+        "home": {
+          "viewLevel": 1,
+          "viewType": "XML",
+          "viewId": "home",
+          "viewName": "Home"
+        },
         "worklist": {
           "viewLevel": 1,
           "viewType": "XML",

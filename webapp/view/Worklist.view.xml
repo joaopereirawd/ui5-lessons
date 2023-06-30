@@ -1,56 +1,25 @@
 <mvc:View 
-	controllerName="client.controller.Worklist"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m"
+ 	displayBlock="true"
+	controllerName="client.controller.Main"
+	xmlns:m="sap.m"
+	xmlns:f="sap.f"
+	xmlns:main="sap.ui.webc.main"
+	xmlns="sap.ui.webc.fiori"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	height="100%"
 >
-    <Page id="worklist">
-		<headerContent>
-			<Button 
-				text="Novo Cliente" 
-				press="onPressNovoCliente"
-			></Button>
-
-			<Button 
-				id="btn" 
-				text="Test Button"
-				type="Transparent" 
-				press="generalMessages('My message goes here')" 
+	<f:FlexibleColumnLayout id="fcl" stateChange="onStateChanged" backgroundDesign="Solid">
+		<f:beginColumnPages>
+			<core:Fragment
+				fragmentName="client.view.fragments.List"
+				type="XML"
 			/>
-		</headerContent>
-		
-		<VBox class="allow-us-to-have-a-wrapper-div">
-			<SearchField 
-				class="search-box" 
-				liveChange=".onLiveSearch" 
-				placeholder="Pesquisar..." 
-				width="100%" 
-			/>
-		</VBox>
+		</f:beginColumnPages>
 
-		<content>
-     		<List 
-				headerText="Clients"
-				class="homepage-list"
-				id="list" 
-				items="{path: 'ModelClients>/results'}" 
-				growing="true"
-				growingThreshold="50"
-			>
-                <items>
-                    <StandardListItem 
-						iconDensityAware="false"
-						iconInset="false"  
-						title="{ModelClients>Nomecliente}" 
-						description="{ModelClients>Descricao}" 
-						type="Navigation" 
-						press="onItemPress"  
-					/>
-                </items>
-            </List>
-
-			<Text text="{ModelClients>/Idcliente}"></Text>
-		</content>
-
-        <footer></footer>   
-    </Page>
+		<f:midColumnPages>
+			<mvc:XMLView viewName="client.view.Detail" />
+		</f:midColumnPages>
+	</f:FlexibleColumnLayout>
 </mvc:View>
+
